@@ -1,8 +1,9 @@
 resource "aws_elb" "LoadBalancer" {
     name                        = "LoadBalancer"
-    subnets                     = ["subnet-17542129", "subnet-9e9564d3", "subnet-c2acb4cd", "subnet-f14468df", "subnet-f3795baf", "subnet-f391b794"]
-    security_groups             = ["sg-002aa499b0eac4f39"]
-    instances                   = []
+    subnets                     = ["${aws_subnet.Public_Subnet.id}", "${aws_subnet.Private_Subnet.id}"]
+    availability_zones          = ["us-east-1a", "us-east-1b"]
+    security_groups             = ["${aws_security_group.RDSSecurityGroup.id}"]
+    instances                   = ["${aws_instance.Webserver1.id}","${aws_instance.Webserver2.id}","${aws_instance.Webserver3.id}"]
     cross_zone_load_balancing   = true
     idle_timeout                = 60
     connection_draining         = true
