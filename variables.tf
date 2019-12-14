@@ -21,3 +21,12 @@ variable "Webserver2" {
 variable "Webserver3" {
     type = "map"
 }
+variable "ssh-Webserver" {
+    default = "ssh-Webserver"
+}
+variable "ssh-Webserver2" {
+    default = "ssh-Webserver2"
+}
+variable "ssh-Webserver3" {
+    default = "ssh-Webserver3"
+}

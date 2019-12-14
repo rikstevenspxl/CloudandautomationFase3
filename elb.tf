@@ -1,7 +1,7 @@
 resource "aws_elb" "LoadBalancer" {
     name                        = "LoadBalancer"
-    subnets                     = ["${aws_subnet.Public_Subnet.id}", "${aws_subnet.Private_Subnet.id}"]
-    availability_zones          = ["us-east-1a", "us-east-1b"]
+    subnets                     = ["${aws_subnet.Public_Subnet.id}"]
+    //availability_zones          = ["us-east-1a", "us-east-1b"]
     security_groups             = ["${aws_security_group.RDSSecurityGroup.id}"]
     instances                   = ["${aws_instance.Webserver1.id}","${aws_instance.Webserver2.id}","${aws_instance.Webserver3.id}"]
     cross_zone_load_balancing   = true

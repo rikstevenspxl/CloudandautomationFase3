@@ -6,7 +6,11 @@ resource "aws_route_table" "routetable" {
   vpc_id = "${aws_vpc.Fase3vpc.id}"
 
   route {
-    cidr_block = "172.31.1.0/24"
+    cidr_block = "172.32.1.0/24"
+    gateway_id = "${aws_internet_gateway.Fase3Gateway.id}"
+  }
+  route {
+    cidr_block = "0.0.0.0/0"
     gateway_id = "${aws_internet_gateway.Fase3Gateway.id}"
   }
   route {
@@ -18,15 +22,3 @@ resource "aws_route_table" "routetable" {
     Name = "routetable"
   }
 }
-//routetable gekoppeld aan NAT-server
-resource "aws_route_table" "routetable2" {
-  vpc_id = "${aws_vpc.Fase3vpc.id}"
-    route {
-      cidr_block    = "0.0.0.0/0"
-      instance_id   = "${aws_elb.LoadBalancer.id}"
-    }
-
-    tags = {
-      Name  =  "routeconnectionELB"
-    }
-  }

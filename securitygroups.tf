@@ -38,7 +38,7 @@ resource "aws_security_group" "SG-LoadBalancer" {
 
 resource "aws_security_group" "RDSSecurityGroup" {
     name        = "RDSSecurityGroup"
-    description = "SecurityGroup for MySQL"
+    description = "SecurityGroup for RDS"
     vpc_id      = "${aws_vpc.Fase3vpc.id}"
 
     ingress {
@@ -46,13 +46,6 @@ resource "aws_security_group" "RDSSecurityGroup" {
         to_port         = 3306
         protocol        = "tcp"
         security_groups = ["${aws_security_group.SG-WebServer.id}"]
-        self            = false
-    }
-    ingress {
-        from_port       = 3306
-        to_port         = 3306
-        protocol        = "tcp"
-        security_groups = ["0.0.0.0/0"]
     }
 
 
